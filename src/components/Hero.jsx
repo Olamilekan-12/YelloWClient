@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <>
       <div className="home-hero  text-white flex flex-col items-center pt-10">
-        <h1 className="mb-[23px]">
+        <h1 className="mb-[23px] text-2xl font-bold">
           Find all Equipment & Construction Services
         </h1>
         <div className="w-[119px] capitalize whitespace-nowrap flex justify-center items-center gap-x-1 bg-[#FCB620] rounded-md px-2 py-1">

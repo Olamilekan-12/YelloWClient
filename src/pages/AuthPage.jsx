@@ -1,10 +1,27 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Header from '../layout/Header';
 import GoogleIcon from '@mui/icons-material/Google';
 import './auth.css';
 import { FacebookOutlined } from '@mui/icons-material';
+import { useGlobalContext } from '../Context/AppContext';
+import { useNavigate } from 'react-router-dom';
 const AuthPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const container = useRef(null);
+  const navigate = useNavigate();
+
+  const {
+    user,
+    isLoading,
+    error,
+    errorMsg,
+    dispatch,
+    registerUser,
+    loginUser,
+  } = useGlobalContext();
 
   const onSignUpClick = () => {
     container.current.classList.add('right-panel-active');
@@ -12,6 +29,28 @@ const AuthPage = () => {
   const onSignInClick = () => {
     container.current.classList.remove('right-panel-active');
   };
+
+  const onSignUpClicked = (e) => {
+    e.preventDefault();
+    registerUser({
+      email: email.trim(),
+      password: password.trim(),
+      name: name.trim(),
+      phoneNumber: phone.trim(),
+    });
+  };
+  const onSignInClicked = (e) => {
+    e.preventDefault();
+    loginUser({
+      email: email.trim(),
+      password: password.trim(),
+    });
+  };
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
   return (
     <main className="auth">
       <Header />
@@ -34,27 +73,50 @@ const AuthPage = () => {
               <p className="text-[1rem] mb-4 font-medium">
                 or use your email for registration
               </p>
+              {error && (
+                <p className="text-[1rem] mb-4 font-medium text-red-600">
+                  {errorMsg}
+                </p>
+              )}
               <input
                 type="text"
                 placeholder="Name"
                 className="mb-2 p-2 rounded-md"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <input
                 type="email"
                 placeholder="Email"
                 className="mb-2 p-2 rounded-md"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
               <input
                 type="text"
                 placeholder="Phone number"
                 className="mb-2 p-2 rounded-md"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
               />
               <input
                 type="password"
                 placeholder="Password"
                 className="mb-2 p-2 rounded-md"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
-              <button className="px-4 mt-2 py-2">Register</button>
+              <button
+                onClick={onSignUpClicked}
+                className="px-4 mt-2 py-2"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Please wait' : 'Register'}
+              </button>
             </form>
           </div>
           <div className="form-container sign-in-container">
@@ -72,18 +134,35 @@ const AuthPage = () => {
                 </span>
               </div>
               <p className="text-[1rem] mb-4 font-medium">or use your email</p>
+              {error && (
+                <p className="text-[1rem] mb-4 font-medium text-red-600">
+                  {errorMsg}
+                </p>
+              )}
               <input
                 type="email"
                 placeholder="Email"
                 className="mb-2 p-2 rounded-md"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
               <input
                 type="password"
                 placeholder="Password"
                 className="mb-2 p-2 rounded-md"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
               <a href="#">Forgot your password?</a>
-              <button className="px-4 mt-2 py-2">Sign In</button>
+              <button
+                onClick={onSignInClicked}
+                className="px-4 mt-2 py-2"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Please wait' : 'Sign In'}
+              </button>
             </form>
           </div>
           <div className="overlay-container">

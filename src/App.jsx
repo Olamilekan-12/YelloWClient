@@ -16,6 +16,7 @@ import {
   SavedAds,
   Supplies,
 } from './pages';
+import PrivateRoute from './layout/PrivateRoute';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="add-product" element={<AddProduct />} />
+          </Route>
           <Route path="product-details" element={<ProductDetailsPage />} />
           <Route path="Equipments" element={<Equipments />} />
           <Route path="Engineers" element={<Engineers />} />
@@ -31,12 +35,13 @@ function App() {
           <Route path="Lifts" element={<Lifts />} />
           <Route path="Supplies" element={<Supplies />} />
           <Route path="Repairs" element={<Repairs />} />
-          <Route path="add-product" element={<AddProduct />} />
           <Route path="saved" element={<SavedAds />} />
           <Route path="equipments" element={<EquipmentsPage />} />
         </Route>
         <Route path="auth" element={<AuthPage />} />
-        <Route path="profile" element={<Profile />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="profile" element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

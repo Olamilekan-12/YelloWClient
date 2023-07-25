@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 export default function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -15,7 +14,7 @@ export default function CustomTabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>

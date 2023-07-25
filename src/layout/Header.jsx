@@ -1,6 +1,6 @@
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import Logo from '../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
   Box,
@@ -25,30 +25,36 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import InputIcon from '@mui/icons-material/Input';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useGlobalContext } from '../Context/AppContext';
+import { Login, LogoutSharp } from '@mui/icons-material';
 
 const lists = [
   {
     link: 'Home',
     icon: <HomeIcon />,
+    url: '/',
   },
-  { link: 'Search', icon: <SearchIcon /> },
-  { link: 'Item Park', icon: <BookmarkIcon /> },
-  { link: 'My Searches', icon: <PolicyIcon /> },
-  { link: 'My Dealers', icon: <PeopleIcon /> },
-  { link: 'Messages', icon: <ForumIcon /> },
-  { link: 'Notifications', icon: <NotificationsIcon /> },
-  { link: 'Rent', icon: <InputIcon /> },
-  { link: 'Finance Calculation', icon: <RequestQuoteIcon /> },
+  { link: 'Search', icon: <SearchIcon />, url: '/search' },
+  { link: 'Item Park', icon: <BookmarkIcon />, url: '/' },
+  { link: 'My Searches', icon: <PolicyIcon />, url: '/saved' },
+  { link: 'My Dealers', icon: <PeopleIcon />, url: '/' },
+  { link: 'Messages', icon: <ForumIcon />, url: '/' },
+  { link: 'Notifications', icon: <NotificationsIcon />, url: '/' },
+  { link: 'Rent', icon: <InputIcon />, url: '/equipments' },
+  { link: 'Finance Calculation', icon: <RequestQuoteIcon />, url: '/' },
 ];
 const lists2 = [
   {
     link: 'Settings',
     icon: <SettingsIcon />,
+    url: '/settings',
   },
 ];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const { user, logoutUser } = useGlobalContext();
+  const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
     console.log(open);
@@ -72,11 +78,19 @@ const Header = () => {
           </div>
         </div>
         <div className="hidden lg:block">
-          <h3>Buy or Rent Equipment</h3>
+          <h3 className="text-xl font-medium">Buy or Rent Equipment</h3>
         </div>
-        <div className="hidden lg:block  bg-[#FCB620] rounded-lg px-4 py-2 text-black font-bold">
-          <Link to="/auth">Sign in / Sign Up</Link>
-        </div>
+        {user ? (
+          <div className="hidden lg:block  bg-[#FCB620] hover:animate-pulse rounded-lg px-4 py-2 text-black font-bold">
+            <span role="button" onClick={logoutUser}>
+              Logout
+            </span>
+          </div>
+        ) : (
+          <div className="hidden lg:block  bg-[#FCB620] hover:animate-pulse rounded-lg px-4 py-2 text-black font-bold">
+            <Link to="/auth">Sign in / Sign Up</Link>
+          </div>
+        )}
       </div>
       <SwipeableDrawer
         anchor="left"
@@ -90,11 +104,20 @@ const Header = () => {
               <h3 className="text-white text-3xl font-medium">Welcome</h3>
               <img src={Logo} alt="Yellow Iron Logo" />
             </div>
-            <p className="text-white">yellowiron@gmail.com</p>
+            {user && (
+              <p className="text-white text-[1rem] font-medium">{user?.name}</p>
+            )}
           </div>
           <List>
             {lists.map((list, index) => (
-              <ListItem key={index} disablePadding>
+              <ListItem
+                key={index}
+                disablePadding={true}
+                onClick={() => {
+                  navigate(list.url);
+                  toggleDrawer();
+                }}
+              >
                 <ListItemButton>
                   <ListItemIcon>{list.icon}</ListItemIcon>
                   <ListItemText primary={list.link} />
@@ -105,7 +128,14 @@ const Header = () => {
           <Divider />
           <List>
             {lists2.map((list, index) => (
-              <ListItem key={index} disablePadding>
+              <ListItem
+                key={index}
+                disablePadding
+                onClick={() => {
+                  navigate(list.url);
+                  toggleDrawer();
+                }}
+              >
                 <ListItemButton>
                   <ListItemIcon>{list.icon}</ListItemIcon>
                   <ListItemText primary={list.link} />
@@ -113,10 +143,42 @@ const Header = () => {
               </ListItem>
             ))}
           </List>
-          <div className="flex flex-col justify-center items-center bg-[#FCB620] w-[182px] mx-auto rounded-md">
-            <Link to="/auth" onClick={toggleDrawer}>
-              <p className="text-xl  font-bold">Sign In/Sign Up</p>
-            </Link>
+          <div className="flex flex-col  bg-[#FCB620]">
+            {user ? (
+              <List>
+                <ListItem
+                  disablePadding
+                  onClick={() => {
+                    logoutUser();
+                    toggleDrawer();
+                  }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LogoutSharp />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            ) : (
+              <List>
+                <ListItem
+                  disablePadding
+                  onClick={() => {
+                    navigate('/auth');
+                    toggleDrawer();
+                  }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Login />
+                    </ListItemIcon>
+                    <ListItemText primary="Login" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            )}
           </div>
         </Box>
       </SwipeableDrawer>
