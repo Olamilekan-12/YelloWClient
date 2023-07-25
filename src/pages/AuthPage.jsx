@@ -5,6 +5,7 @@ import './auth.css';
 import { FacebookOutlined } from '@mui/icons-material';
 import { useGlobalContext } from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import Sunset from '../assets/images/sunset.jpg';
 const AuthPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,7 +53,14 @@ const AuthPage = () => {
     }
   }, [user]);
   return (
-    <main className="auth">
+    <main className="auth relative">
+      <div className="absolute w-[100%] h-[100%]">
+        <img
+          src={Sunset}
+          alt=""
+          className="block w-[100%] h-[100%] object-cover"
+        />
+      </div>
       <Header />
       <div className="px-4 lg:px-0 pt-[30%] lg:pt-[15%] flex flex-col justify-center items-center">
         <div className="container" ref={container}>

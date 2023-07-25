@@ -8,7 +8,7 @@ import Cat from '../assets/cat.png';
 const GridContainer = () => {
   return (
     <div className="flex flex-wrap gap-1 justify-center mt-[40px]">
-      <Gridcards image={Supply} text="Add" url="/Supplies" />
+      <Gridcards image={Supply} text="Add" url="/add-product" sell />
       <Gridcards image={Supply} text="Supplies" url="/Supplies" />
       <Gridcards image={Repairs} text="Repairs" url="/Repairs" />
       <Gridcards image={Construct} text="Construction" url="/Construction" />

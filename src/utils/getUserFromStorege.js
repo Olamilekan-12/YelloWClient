@@ -8,5 +8,5 @@ export const getUserFromLocalStorage = () => {
 };
 
 export const baseUrl = axios.create({
-  baseURL: 'http://localhost:3500/api',
+  baseURL: 'http://api.yellowiron.ng/api',
 });

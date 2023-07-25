@@ -3,10 +3,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProductsCard = ({ image, title, price }) => {
   return (
-    <article className="w-full md:w-[352px] bg-white flex flex-col">
+    <Link to="/products" className="w-full md:w-[352px] bg-white flex flex-col">
       <Card style={{ height: '100%' }}>
         <CardActionArea>
           <CardMedia
@@ -26,7 +27,7 @@ const ProductsCard = ({ image, title, price }) => {
           </CardContent>
         </CardActionArea>
       </Card>
-    </article>
+    </Link>
   );
 };
 

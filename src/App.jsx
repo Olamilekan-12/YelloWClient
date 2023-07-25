@@ -27,7 +27,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="add-product" element={<AddProduct />} />
           </Route>
-          <Route path="product-details" element={<ProductDetailsPage />} />
+          <Route path="products" element={<ProductDetailsPage />} />
           <Route path="Equipments" element={<Equipments />} />
           <Route path="Engineers" element={<Engineers />} />
           <Route path="Dredging" element={<Dredging />} />

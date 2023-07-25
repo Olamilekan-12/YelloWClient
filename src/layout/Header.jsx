@@ -34,7 +34,7 @@ const lists = [
     icon: <HomeIcon />,
     url: '/',
   },
-  { link: 'Search', icon: <SearchIcon />, url: '/search' },
+  { link: 'Search', icon: <SearchIcon />, url: '/equipments' },
   { link: 'Item Park', icon: <BookmarkIcon />, url: '/' },
   { link: 'My Searches', icon: <PolicyIcon />, url: '/saved' },
   { link: 'My Dealers', icon: <PeopleIcon />, url: '/' },

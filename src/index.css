@@ -21,6 +21,10 @@ Home
 }
 
 .auth {
-  background: no-repeat center/100% url('./assets/images/sunset.jpg');
+  width: 100vw;
   height: 100vh;
+}
+
+.marginT {
+  margin-top: 52px;
 }
