@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SharedLayout from './layout/SharedLayout';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SharedLayout from "./layout/SharedLayout";
 import {
   AddProduct,
   AuthPage,
@@ -15,8 +15,8 @@ import {
   Repairs,
   SavedAds,
   Supplies,
-} from './pages';
-import PrivateRoute from './layout/PrivateRoute';
+} from "./pages";
+import PrivateRoute from "./layout/PrivateRoute";
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="add-product" element={<AddProduct />} />
-          </Route>
+          {/* <Route element={<PrivateRoute />}> */}
+          <Route path="add-product" element={<AddProduct />} />
+          {/* </Route> */}
           <Route path="product-details" element={<ProductDetailsPage />} />
           <Route path="Equipments" element={<Equipments />} />
           <Route path="Engineers" element={<Engineers />} />

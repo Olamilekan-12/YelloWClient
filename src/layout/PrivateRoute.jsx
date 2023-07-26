@@ -1,5 +1,5 @@
-import { Navigate } from 'react-router-dom';
-import { useGlobalContext } from '../Context/AppContext';
+import { Navigate } from "react-router-dom";
+import { useGlobalContext } from "../Context/AppContext";
 const PrivateRoute = ({ children }) => {
   const { user } = useGlobalContext();
 
