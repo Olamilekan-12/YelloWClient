@@ -24,7 +24,7 @@ const AppContext = ({ children }) => {
   const registerUser = async (info) => {
     dispatch({ type: SET_LOADING });
     try {
-      const response = await baseUrl.post('/users/register', info);
+      const response = await baseUrl.post('/api/users/register', info);
       dispatch({ type: REGISTER_SUCCESS, payload: response.data.result });
       localStorage.setItem('yellowUser', JSON.stringify(response.data.result));
     } catch (error) {
@@ -38,7 +38,7 @@ const AppContext = ({ children }) => {
   const loginUser = async (info) => {
     dispatch({ type: SET_LOADING });
     try {
-      const response = await baseUrl.post('/users/login', info);
+      const response = await baseUrl.post('/api/users/login', info);
       dispatch({ type: LOGIN_SUCCESS, payload: response.data.result });
       localStorage.setItem('yellowUser', JSON.stringify(response.data.result));
     } catch (error) {
