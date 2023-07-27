@@ -24,9 +24,14 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="add-product" element={<AddProduct />} />
-          </Route>
+          <Route
+            path="add-product"
+            element={
+              <PrivateRoute>
+                <AddProduct />
+              </PrivateRoute>
+            }
+          />
           <Route path="products" element={<ProductDetailsPage />} />
           <Route path="Equipments" element={<Equipments />} />
           <Route path="Engineers" element={<Engineers />} />
@@ -39,9 +44,14 @@ function App() {
           <Route path="equipments" element={<EquipmentsPage />} />
         </Route>
         <Route path="auth" element={<AuthPage />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="profile" element={<Profile />} />
-        </Route>
+        <Route
+          path="profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
