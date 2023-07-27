@@ -39,9 +39,9 @@ function App() {
           <Route path="equipments" element={<EquipmentsPage />} />
         </Route>
         <Route path="auth" element={<AuthPage />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="profile" element={<Profile />} />
-        </Route>
+        {/* <Route element={<PrivateRoute />}> */}
+        <Route path="profile" element={<Profile />} />
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );

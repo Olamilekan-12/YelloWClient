@@ -103,3 +103,79 @@ form {
 #add-img {
   height: 60px;
 }
+
+.profile-container {
+  width: 100%;
+}
+
+.user-details {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.user-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.user-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.user-options {
+  margin-top: 60px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+}
+
+.option-card {
+  width: 45%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  gap: 5px;
+  overflow: hidden;
+  box-shadow: 2px 1px 5px 1px rgba(245, 245, 245, 0.75);
+  -webkit-box-shadow: 2px 1px 5px 1px rgba(245, 245, 245, 0.75);
+  -moz-box-shadow: 2px 1px 5px 1px rgba(245, 245, 245, 0.75);
+}
+
+.inner-card {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 5px 10px;
+  background-color: rgb(247, 240, 240);
+}
+.gray {
+  color: gray;
+}
+
+.inner-card:hover {
+  background-color: gray;
+}
+.inner-card:hover .gray {
+  color: rgb(247, 240, 240);
+}
