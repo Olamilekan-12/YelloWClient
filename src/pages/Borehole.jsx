@@ -1,5 +1,9 @@
 const Borehole = () => {
-  return <div>Borehole</div>;
+  return (
+    <div className="marginT">
+      <h3 className="text-3xl">Under construction</h3>
+    </div>
+  );
 };
 
 export default Borehole;
